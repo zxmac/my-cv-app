@@ -18,7 +18,7 @@ export default function Home() {
     const sp =  CommonLib.getSearchParams(window);
     
     (async () => {
-      const data = await CvService.get(sp.s, sp.a);
+      const data = await CvService.get(sp.s);
       setCv(data);
       setShowLoader(false);
     })();

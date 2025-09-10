@@ -1,7 +1,7 @@
 import { SheetLib } from "../lib/sheet.lib"
 import { GSheet, CvExperience, CvReference, CvEducation } from "../models/cv.model"
 import { GSheetConstant } from "../lib/constants/gsheet.contact"
-import { GSheetService } from "./gsheet-service"
+import { GSheetService } from "./gsheet.service"
 
 function map(sheet: GSheet[]) {
   const profileList = SheetLib.filterSheet(sheet, GSheetConstant.CV_PROFILE)
@@ -13,8 +13,8 @@ function map(sheet: GSheet[]) {
   return { profileList, skillList, summaryList, experienceList, referenceList, educationList }
 }
 
-async function get(sheetId: string, apiKey: string) {
-  const obj = await GSheetService.get(sheetId, apiKey);
+async function get(sheetId: string) {
+  const obj = await GSheetService.get(sheetId);
   const sheetValues = SheetLib.formatSheets(obj.valueRanges[0].values)
   const data = map(sheetValues)
   
